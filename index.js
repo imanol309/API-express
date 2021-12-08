@@ -3,6 +3,7 @@ const cors = require('cors')
 const mysql =  require('mysql') 
 const app =  express()
 app.use(cors())
+app.set('port', process.env.PORT || 4000)
 
 const credentials={
     host: 'localhost',
@@ -11,11 +12,9 @@ const credentials={
     database: 'init'
 }
 
-
 app.get('/', (req, res) => {
     res.send('hola desde tu datos')
 })
-
 
 app.get('/datos', (req, res) => {
     var connection= mysql.createConnection(credentials)
@@ -28,5 +27,4 @@ app.get('/datos', (req, res) => {
     })
 })
 
-
-app.listen(4000, () => console.log('hola soy el servidor'))
+app.listen(app.get('port'), () => console.log(`Servidor abierto con exito en el puerto ${app.get('port')}`))
