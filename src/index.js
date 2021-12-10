@@ -1,19 +1,16 @@
+// pack required
+
 const express =  require('express')
 const cors = require('cors')
 const mysql =  require('mysql') 
 const app =  express()
-app.use(cors())
+const viewData =  require('./routes/viewData')
+
 // settings
+app.use(cors())
 app.set('port', process.env.PORT || 4000)
 
 //credentials
-
-const credentials={
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'init'
-}
 
 //router the serve, main router
 app.get('/', (req, res) => {
@@ -21,16 +18,10 @@ app.get('/', (req, res) => {
 })
 
 //routes to view data
-app.get('/datos', (req, res) => {
-    var connection= mysql.createConnection(credentials)
-    connection.query('SELECT * FROM usuarios', (error, result)=> {
-        if(error) {
-            res.status(500).send(error)
-        } else {
-            res.status(200).send(result)
-        }
-    })
-})
+app.use('/datos', viewData)
+app.use('/datos/usuarios', viewData)
+
+
 
 // app.port('/enviar', (req, res) => {
 //     connection.query('INSERT INTO usuarios',[req.body], (error, result)=> {
