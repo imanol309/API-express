@@ -20,18 +20,7 @@ app.get('/', (req, res) => {
 //routes to view data
 app.use('/datos', viewData)
 app.use('/datos/usuarios', viewData)
-
-
-
-// app.port('/enviar', (req, res) => {
-//     connection.query('INSERT INTO usuarios',[req.body], (error, result)=> {
-//         if(error) {
-//             res.status(500).send(error)
-//         } else {
-//             res.status(200).send(result)
-//         }
-//     })
-// })
+app.use('/datos/usuarios/:id', viewData)
 
 
 // starting the serve 

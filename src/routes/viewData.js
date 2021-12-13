@@ -31,4 +31,18 @@ router.get('/usuarios', (req, res) => {
     })
 })
 
+
+router.get('/usuarios/:id', (req, res) => {
+    const {id} =  req.params
+    var connection= mysql.createConnection(credentials)
+    connection.query('SELECT * FROM usuarios WHERE id_usuarios = ?',[id], (error, result)=> {
+        if(error) {
+            res.status(500).send(error)
+        } else {
+            res.status(200).send(result[0])
+        }
+    })
+})
+
+
 module.exports = router;
