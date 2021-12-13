@@ -5,6 +5,7 @@ const cors = require('cors')
 const mysql =  require('mysql') 
 const app =  express()
 const viewData =  require('./routes/viewData')
+const portData =  require('./routes/portData')
 
 // settings
 app.use(cors())
@@ -21,6 +22,8 @@ app.get('/', (req, res) => {
 app.use('/datos', viewData)
 app.use('/datos/usuarios', viewData)
 app.use('/datos/usuarios/:id', viewData)
+app.use('/crear', portData)
+
 
 
 // starting the serve 
