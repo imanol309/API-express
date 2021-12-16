@@ -7,7 +7,7 @@ const credentials={
     user: 'root',
     password: '',
     database: 'init'
-}
+} 
 
 routerPort.post('/', (req, res) => {
     var connection= mysql.createConnection(credentials)
@@ -15,12 +15,13 @@ routerPort.post('/', (req, res) => {
     const DataObj = {
         nombre: req.body.nombre,
         salarios: req.body.salarios
-      };
+    };
 
     console.log(req.body)
     const query = 'INSERT INTO trabajadores SET ?';
-    connection.query(query, DataObj, (error, result) => {
-        if (err) {
+
+    connection.query(query, DataObj, error => {
+        if (error) {
             res.status(500).send(error)
         } else {
             res.status(200).send('Dato creado correctamente')

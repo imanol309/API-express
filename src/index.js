@@ -1,7 +1,7 @@
 // pack required
-
 const express =  require('express')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 const mysql =  require('mysql') 
 const app =  express()
 const viewData =  require('./routes/viewData')
@@ -17,6 +17,8 @@ app.set('port', process.env.PORT || 4000)
 app.get('/', (req, res) => {
     res.send('hola desde tu datos')
 })
+
+app.use(bodyParser.json())
 
 //routes to view data
 app.use('/datos', viewData)

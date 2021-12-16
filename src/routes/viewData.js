@@ -31,7 +31,6 @@ router.get('/usuarios', (req, res) => {
     })
 })
 
-
 router.get('/usuarios/:id', (req, res) => {
     const {id} =  req.params
     var connection= mysql.createConnection(credentials)
@@ -43,6 +42,5 @@ router.get('/usuarios/:id', (req, res) => {
         }
     })
 })
-
 
 module.exports = router;
