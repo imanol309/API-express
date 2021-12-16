@@ -25,6 +25,7 @@ app.use('/datos', viewData)
 app.use('/datos/usuarios', viewData)
 app.use('/datos/usuarios/:id', viewData)
 app.use('/crear', portData)
+app.use('/crear/usuarios', portData)
 
 
 
