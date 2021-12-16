@@ -5,7 +5,9 @@ const bodyParser = require('body-parser')
 const mysql =  require('mysql') 
 const app =  express()
 const viewData =  require('./routes/viewData')
-const portData =  require('./routes/portData')
+const postData =  require('./routes/portData')
+const putData =  require('./routes/putData')
+
 
 // settings
 app.use(cors())
@@ -24,8 +26,10 @@ app.use(bodyParser.json())
 app.use('/datos', viewData)
 app.use('/datos/usuarios', viewData)
 app.use('/datos/usuarios/:id', viewData)
-app.use('/crear', portData)
-app.use('/crear/usuarios', portData)
+app.use('/crear', postData)
+app.use('/crear/usuarios', postData)
+app.use('/routes/putData/modificar/:id', putData)
+
 
 
 
