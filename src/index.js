@@ -7,6 +7,8 @@ const app =  express()
 const viewData =  require('./routes/viewData')
 const postData =  require('./routes/portData')
 const putData =  require('./routes/putData')
+const deleteData =  require('./routes/deleteData')
+
 
 const credentials={
     host: 'localhost',
@@ -14,7 +16,6 @@ const credentials={
     password: '',
     database: 'init'
 } 
-
 
 // settings
 app.use(cors())
@@ -29,64 +30,12 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.json())
 
+
 //routes to view data
-app.use('/datos', viewData)
-app.use('/datos/usuarios', viewData)
-app.use('/datos/usuarios/:id', viewData)
-app.use('/crear', postData)
-app.use('/crear/usuarios', postData)
-// app.use('/routes/putData/modificar/:id', putData)
-
-
-app.put('/modificar/:id', (req, res) => {
-    var connection= mysql.createConnection(credentials)
-
-    const { id } = req.params;
-    const {nombre, salarios} = req.body
-    const sql =  `UPDATE trabajadores SET nombre = '${nombre}', salarios = '${salarios}' WHERE id = '${id}'`
-
-    console.log(req.body)
-    connection.query(sql, error => {
-        if (error) {
-            res.status(500).send(error)
-        } else {
-            res.status(200).send('Dato modificado correctamente en la tabla trabajadores')
-        }
-    })
-})
-
-
-app.delete('/eliminarTrabajadores/:id', (req,res) => {
-    var connection= mysql.createConnection(credentials)
-    const { id } = req.params;
-    const sql  = `DELETE FROM trabajadores WHERE id = ${id}`
-    console.log(req.body)
-    connection.query(sql, error => {
-        if (error) {
-            res.status(500).send(error)
-        } else {
-            res.status(200).send('Dato eliminado correctamente de la  tabla trabajadores')
-        }
-    })
-})
-
-
-app.delete('/eliminarUsuarios/:id', (req,res) => {
-    var connection= mysql.createConnection(credentials)
-    const { id } = req.params;
-    const sql  = `DELETE FROM usuarios WHERE id_usuarios = ${id}`
-    console.log(req.body)
-    connection.query(sql, error => {
-        if (error) {
-            res.status(500).send(error)
-        } else {
-            res.status(200).send('Dato eliminado correctamente de la  tabla trabajadores')
-        }
-    })
-})
-
-
-
+app.use('/viewData', viewData)
+app.use('/crearData', postData)
+app.use('/modificarData', putData)
+app.use('/eliminarData', deleteData)
 
 // starting the serve 
 app.listen(app.get('port'), () => console.log(`Servidor abierto con exito en el puerto ${app.get('port')}`))
