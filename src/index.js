@@ -56,6 +56,36 @@ app.put('/modificar/:id', (req, res) => {
 })
 
 
+app.delete('/eliminarTrabajadores/:id', (req,res) => {
+    var connection= mysql.createConnection(credentials)
+    const { id } = req.params;
+    const sql  = `DELETE FROM trabajadores WHERE id = ${id}`
+    console.log(req.body)
+    connection.query(sql, error => {
+        if (error) {
+            res.status(500).send(error)
+        } else {
+            res.status(200).send('Dato eliminado correctamente de la  tabla trabajadores')
+        }
+    })
+})
+
+
+app.delete('/eliminarUsuarios/:id', (req,res) => {
+    var connection= mysql.createConnection(credentials)
+    const { id } = req.params;
+    const sql  = `DELETE FROM usuarios WHERE id_usuarios = ${id}`
+    console.log(req.body)
+    connection.query(sql, error => {
+        if (error) {
+            res.status(500).send(error)
+        } else {
+            res.status(200).send('Dato eliminado correctamente de la  tabla trabajadores')
+        }
+    })
+})
+
+
 
 
 // starting the serve 
