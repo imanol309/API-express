@@ -17,7 +17,6 @@ routerPort.post('/', (req, res) => {
         salarios: req.body.salarios
     };
 
-    console.log(req.body)
     const query = 'INSERT INTO trabajadores SET ?';
 
     connection.query(query, DataObj, error => {
@@ -42,7 +41,6 @@ routerPort.post('/usuarios', (req, res) => {
 
     };
 
-    console.log(req.body)
     const query = 'INSERT INTO usuarios SET ?';
 
     connection.query(query, DataObj, error => {

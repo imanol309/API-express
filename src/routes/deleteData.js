@@ -13,7 +13,6 @@ routerDelete.delete('/Trabajadores/:id', (req,res) => {
     var connection= mysql.createConnection(credentials)
     const { id } = req.params;
     const sql  = `DELETE FROM trabajadores WHERE id = ${id}`
-    console.log(req.body)
     connection.query(sql, error => {
         if (error) {
             res.status(500).send(error)
@@ -28,7 +27,6 @@ routerDelete.delete('/Usuarios/:id', (req,res) => {
     var connection= mysql.createConnection(credentials)
     const { id } = req.params;
     const sql  = `DELETE FROM usuarios WHERE id_usuarios = ${id}`
-    console.log(req.body)
     connection.query(sql, error => {
         if (error) {
             res.status(500).send(error)

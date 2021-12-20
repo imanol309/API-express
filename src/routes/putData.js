@@ -17,7 +17,6 @@ routerPut.put('/modificar/:id', (req, res) => {
     const {nombre, salarios} = req.body
     const sql =  `UPDATE trabajadores SET nombre = '${nombre}', salarios = '${salarios}' WHERE id = '${id}'`
 
-    console.log(req.body)
     connection.query(sql, error => {
         if (error) {
             res.status(500).send(error)
