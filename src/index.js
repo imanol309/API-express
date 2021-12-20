@@ -22,11 +22,7 @@ app.use(cors())
 app.set('port', process.env.PORT || 4000)
 
 //credentials
-
-//router the serve, main router
-app.get('/', (req, res) => {
-    res.send('hola desde tu datos')
-})
+app.use('/', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json())
 
