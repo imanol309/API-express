@@ -1,38 +1,30 @@
 const express = require("express");
 const mysql = require("mysql");
 const routerPort = express.Router();
-
-const credentials = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "init",
-};
+const credentials = require("../index");
 
 routerPort.post("/", (req, res) => {
-  var connection = mysql.createConnection(credentials);
-
   const DataObj = {
     nombre: req.body.nombre,
     salarios: req.body.salarios,
   };
 
-  const query = "INSERT INTO trabajadores SET ?";
-
-  connection.query(query, DataObj, (error) => {
-    if (error) {
-      res.status(500).send(error);
-    } else {
-      res
-        .status(200)
-        .send("Dato creado correctamente en la tabla trabajadores");
+  require("../index").query(
+    "INSERT INTO trabajadores SET ?",
+    DataObj,
+    (error) => {
+      if (error) {
+        res.status(500).send(error);
+      } else {
+        res
+          .status(200)
+          .send("Dato creado correctamente en la tabla trabajadores");
+      }
     }
-  });
+  );
 });
 
 routerPort.post("/usuarios", (req, res) => {
-  var connection = mysql.createConnection(credentials);
-
   const DataObj = {
     nombre: req.body.nombre,
     sexo: req.body.sexo,
@@ -41,9 +33,7 @@ routerPort.post("/usuarios", (req, res) => {
     codigo: req.body.codigo,
   };
 
-  const query = "INSERT INTO usuarios SET ?";
-
-  connection.query(query, DataObj, (error) => {
+  require("../index").query("INSERT INTO usuarios SET ?", DataObj, (error) => {
     if (error) {
       res.status(500).send(error);
     } else {

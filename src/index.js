@@ -9,11 +9,17 @@ const postData = require("./routes/portData");
 const putData = require("./routes/putData");
 const deleteData = require("./routes/deleteData");
 
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "init",
+});
+
 // settings
 app.use(cors());
 app.set("port", process.env.PORT || 4000);
 
-//credentials
 app.use("/", express.static(__dirname + "/public"));
 
 app.use(bodyParser.json());
@@ -28,3 +34,5 @@ app.use("/eliminarData", deleteData);
 app.listen(app.get("port"), () =>
   console.log(`Servidor abierto con exito en el puerto ${app.get("port")}`)
 );
+
+module.exports = connection;
