@@ -20,12 +20,12 @@ var connection = mysql.createConnection({
 app.use(cors());
 app.set("port", process.env.PORT || 4000);
 
-app.use("/", express.static(__dirname + "/public"));
+// app.use("/", express.static(__dirname + "/public"));
 
 app.use(bodyParser.json());
 
 //routes to view data
-app.use("/viewData", viewData);
+app.use("/", viewData);
 app.use("/crearData", postData);
 app.use("/modificarData", putData);
 app.use("/eliminarData", deleteData);
