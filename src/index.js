@@ -10,10 +10,10 @@ const putData = require("./routes/putData");
 const deleteData = require("./routes/deleteData");
 
 var connection = mysql.createConnection({
-  host: "us-cdbr-east-05.cleardb.net",
-  user: "b54f80c10f2fd6",
-  password: "25106db8",
-  database: "heroku_eb9d6273eebd95a",
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "init",
 });
 
 
