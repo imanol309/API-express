@@ -1,7 +1,5 @@
 const express = require("express");
-const mysql = require("mysql");
 const routerPort = express.Router();
-const credentials = require("../index");
 
 routerPort.post("/", (req, res) => {
   const DataObj = {
